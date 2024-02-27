@@ -23,5 +23,11 @@
   "icons": {
     "48": "icon48.png"
   },
-  "permissions": ["storage", "activeTab"]
+  "permissions": ["storage", "activeTab"],
+  "web_accessible_resources": [
+    {
+        "resources": ["img/*"],
+        "matches": ["<all_urls>"]
+    }
+]
 }
