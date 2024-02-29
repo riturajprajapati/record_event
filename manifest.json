@@ -19,7 +19,7 @@
       "all_frames":true,
       "run_at":"document_start",
       "matches": ["<all_urls>"],
-      "js": ["Content.js"]
+      "js": ["Content.js","utilities/jquery.js"]
     }
   ],
   "web_accessible_resources": [
