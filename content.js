@@ -1464,7 +1464,7 @@ document.addEventListener('click', function () {
 
 ///////////////////////////////////
 /////extension////////////////////
-let eventData = "";
+let eventData;
 let elementRecorded = [];
 
 // Function to handle clicks on the top-level document
@@ -1531,7 +1531,7 @@ function stopButtonClickHandler() {
 function sendDataToAPI(elementInfo) {
     // Data to send to the API
     const data = {
-        name: elementInfo[0]
+        name: elementInfo
     };
 
     // Fetch options
