@@ -1465,14 +1465,17 @@ document.addEventListener('click', function () {
 ///////////////////////////////////
 /////extension////////////////////
 let eventData;
+let typingTimer;
 let elementRecorded = [];
 
 // Function to handle clicks on the top-level document
 function clickEventHandler(event) {
     let target = event.target;
-    if(event.type !== 'input')
-    eventData = 'click on ' + target.tagName.toLowerCase() + "  " + (target.id ? target.id : target.name ? target.name : target.textContent.trim().substring(0, 20));
-    
+    if(event.type !== 'input'){
+    // eventData = 'click on ' + target.tagName.toLowerCase() + "  " + (target.id ? target.id : target.name ? target.name : target.textContent.trim().substring(0, 20));
+    eventData = 'Click' + ' "' + (target.textContent ? target.textContent : target.name) + '"';
+    }
+
     if(eventData !== '')
     elementRecorded.push(eventData);
     console.log(eventData);
@@ -1480,24 +1483,18 @@ function clickEventHandler(event) {
 
 // Function to handle input events
 function inputEventHandler(event) {
-    let target = event.target;
-    let typingTimer;
+  let target = event.target;
+  let eventData = ''; // Initialize eventData here
 
-    // if (target.tagName.toLowerCase() === 'input') {
-    //     eventData = "'" + event.target.value + "' content typed in input field" + "  " + (target.id ? target.id : target.name ? target.name : target.textContent.trim().substring(0, 20));
-    // }
-   
-    clearTimeout(typingTimer); // Clear the previous timer
+  clearTimeout(typingTimer); // Clear the previous timer
 
-    typingTimer = setTimeout(function () {
-        if (event.type === 'input') {
-            eventData = "'" + event.target.value + "' content typed in input field" + "  " + (target.id ? target.id : target.name ? target.name : target.textContent.trim().substring(0, 20));
-        }
-    }, 2000);
-
-    if(eventData !== '')
-    elementRecorded.push(eventData);
-    console.log(eventData);
+  typingTimer = setTimeout(function () {
+      if (event.type === 'input') {
+          eventData = "'" + target.value + "' into " + (target.name ? target.name : 'input field');
+          elementRecorded.push(eventData); // Push eventData here
+          console.log(eventData);
+      }
+  }, 3000);
 }
 
 // Function to handle clicks on the startButton
@@ -1506,7 +1503,7 @@ function startButtonClickHandler() {
     document.addEventListener('click', clickEventHandler);
 
     // Add event listener for input events
-    document.addEventListener('input', inputEventHandler);
+    document.addEventListener('input', inputEventHandler, true);
 
     // Add event listener for the stopButton to remove event listeners
     document.getElementById('stop-button').addEventListener('click', stopButtonClickHandler);
