@@ -1460,8 +1460,16 @@ function getMaxZIndex() {
 
 //create popup on first click
 document.addEventListener('click', function () {
+  
   createPopup();
 
+  var x = document.getElementById("stop-button");
+  x.style.display = "none";
+
+  if(start){
+    var y = document.getElementById("stop-button");
+    y.style.display = "block";
+  }
 });
 
 ///////////////////////////////////
@@ -1514,6 +1522,12 @@ function startButtonClickHandler() {
 
     console.log("Event listeners added.");
 
+    var x = document.getElementById("start-button");
+    x.style.display = "none";
+
+    var y = document.getElementById("stop-button");
+    y.style.display = "block";
+
     start = true;
   }
 }
@@ -1536,6 +1550,10 @@ function stopButtonClickHandler() {
     sendDataToAPI(elementRecorded);
     elementRecorded = [];
 
+    var x = document.getElementById("start-button");
+    x.style.display = "block";
+    var y = document.getElementById("stop-button");
+    y.style.display = "none";
 
     start = false;
   }
