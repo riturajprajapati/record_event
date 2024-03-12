@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Event Record 2",
+  "name": "Event Record demo 2",
   "version": "1.1.3",
   "action": {
     "default_popup": "popup.html",

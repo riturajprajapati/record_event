@@ -335,9 +335,21 @@ function createBodyContent() {
   stopButton.style.width = '60px';
   stopButton.style.height = '30px';
 
+  const generateButtonProperty = {};
+  generateButtonProperty.textContent = 'Generate';
+  generateButtonProperty.id = 'generate-button'; // Add id to the 'Stop' button
+  generateButtonProperty.className = 'button'; // Add class to the 'Stop' button
+  const generateButton = createElementOnUI('button', generateButtonProperty);
+  generateButton.style.marginRight = '20px';
+  generateButton.style.border = 'solid #060606 1px';
+  generateButton.style.width = '80px';
+  generateButton.style.height = '30px';
+
+
   // Append buttons to the button container
   buttonContainer.appendChild(startButton);
   buttonContainer.appendChild(stopButton);
+  buttonContainer.appendChild(generateButton);
 
   // Append the button container to the popup content
   popupContent.appendChild(buttonContainer);
@@ -1466,10 +1478,19 @@ document.addEventListener('click', function () {
   var x = document.getElementById("stop-button");
   x.style.display = "none";
 
+  var z = document.getElementById("generate-button");
+  z.style.display ="none";
+
   if(start){
     var y = document.getElementById("stop-button");
     y.style.display = "block";
   }
+
+  if(stop){
+    var z = document.getElementById("generate-button");
+    z.style.display ="block";
+  }
+
 });
 
 ///////////////////////////////////
@@ -1477,6 +1498,7 @@ document.addEventListener('click', function () {
 let eventData;
 let typingTimer;
 let start = false;
+let stop = false;
 let elementRecorded = [];
 
 // Function to handle clicks on the top-level document
@@ -1484,7 +1506,7 @@ function clickEventHandler(event) {
   let target = event.target;
   if (event.type !== 'input') {
     // eventData = 'click on ' + target.tagName.toLowerCase() + "  " + (target.id ? target.id : target.name ? target.name : target.textContent.trim().substring(0, 20));
-    eventData = 'Click' + ' "' + (target.textContent ? target.textContent : target.name) + '"';
+    eventData = 'Click' + ' "' + (target.textContent ? target.textContent : target.id ? target.id : target.name) + '"';
   }
 
   if (eventData !== '')
@@ -1528,6 +1550,9 @@ function startButtonClickHandler() {
     var y = document.getElementById("stop-button");
     y.style.display = "block";
 
+    // var z = document.getElementById("generate-button");
+    // z.style.display ="block"
+
     start = true;
   }
 }
@@ -1552,8 +1577,13 @@ function stopButtonClickHandler() {
 
     var x = document.getElementById("start-button");
     x.style.display = "block";
+
     var y = document.getElementById("stop-button");
     y.style.display = "none";
+
+    // var z = document.getElementById("generate-button");
+    // z.style.display ="block"
+
 
     start = false;
   }
